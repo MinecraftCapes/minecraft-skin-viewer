@@ -13,11 +13,42 @@
                     <div id="app" class="p-5">
                         <h1>Minecraft Skin Viewer</h1>
                         <hr>
-                        <div class="col-4">
-                            <div id="skinviewer"></div>
-                        </div>
-                        <div class="col">
-
+                        <div class="row">
+                            <div class="col-4">
+                                <div id="skinviewer" class="w-full"></div>
+                            </div>
+                            <div class="col offset-1">
+                                <div>
+                                    <h4>Change User</h4>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" v-model="username"/>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-primary me-1" @click="changeUser">Change User</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div>
+                                    <h4>Skin</h4>
+                                    <button class="btn btn-primary me-1" @click="changeSkin">Change Skin</button>
+                                    <button class="btn btn-primary me-1" @click="changeCape">Change Cape</button>
+                                    <button class="btn btn-primary" @click="changeEars">Change Ears</button>
+                                </div>
+                                <hr>
+                                <div>
+                                    <h4>Premium</h4>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkDinnerbone" @change="setDinnerbone">
+                                        <label class="form-check-label" for="checkDinnerbone">Dinnerbone</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkGlint" @change="setGlint">
+                                        <label class="form-check-label" for="checkGlint">Glint</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -28,12 +59,39 @@
             import MinecraftSkinViewer from '../lib/main.js'
 
             createApp({
+                data() {
+                    return {
+                        username: "Siriuo",
+                        minecraftSkinViewer: null
+                    }
+                },
                 mounted() {
-                    const minecraftSkinViewer = new MinecraftSkinViewer({
+                    this.minecraftSkinViewer = new MinecraftSkinViewer({
                         canvas: document.getElementById('skinviewer'),
                         width: 300,
                         height: 500
                     })
+                },
+                methods: {
+                    changeUser() {
+                        this.minecraftSkinViewer.loadSkin(`https://minecraftapi.net/api/v2/profile/${this.username}/skin`)
+                        this.minecraftSkinViewer.loadCape(`https://minecraftapi.net/api/v2/profile/${this.username}/capes/minecraft`)
+                    },
+                    changeSkin() {
+                        this.minecraftSkinViewer.loadSkin('/steve.png')
+                    },
+                    changeCape() {
+                        this.minecraftSkinViewer.loadCape('/cape-template.png')
+                    },
+                    changeEars() {
+                        this.minecraftSkinViewer.loadEars('/ears.png')
+                    },
+                    setDinnerbone(value) {
+                        this.minecraftSkinViewer.setDinnerbone(value.target.checked)
+                    },
+                    setGlint() {
+                        this.minecraftSkinViewer.setGlint(value.target.checked)
+                    }
                 }
             }).mount('#app')
           </script>
