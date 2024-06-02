@@ -61,7 +61,7 @@
             createApp({
                 data() {
                     return {
-                        username: "Siriuo",
+                        username: "naspen",
                         minecraftSkinViewer: null
                     }
                 },
@@ -69,13 +69,16 @@
                     this.minecraftSkinViewer = new MinecraftSkinViewer({
                         canvas: document.getElementById('skinviewer'),
                         width: 300,
-                        height: 500
+                        height: 500,
+                        // skin: 'skin.png',
+                        cape: 'cape.png',
+                        // ears: 'ears.png'
                     })
                 },
                 methods: {
                     changeUser() {
                         this.minecraftSkinViewer.loadSkin(`https://minecraftapi.net/api/v2/profile/${this.username}/skin`)
-                        this.minecraftSkinViewer.loadCape(`https://minecraftapi.net/api/v2/profile/${this.username}/capes/minecraft`)
+                        this.minecraftSkinViewer.loadCape(`https://minecraftapi.net/api/v2/profile/${this.username}/capes/minecraftcapes`)
                     },
                     changeSkin() {
                         this.minecraftSkinViewer.loadSkin('/steve.png')
