@@ -35,6 +35,10 @@
                                     <button class="btn btn-primary me-1" @click="changeSkin">Change Skin</button>
                                     <button class="btn btn-primary me-1" @click="changeCape">Change Cape</button>
                                     <button class="btn btn-primary" @click="changeEars">Change Ears</button>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkSlim" @change="setSlim">
+                                        <label class="form-check-label" for="checkSlim">Slim</label>
+                                    </div>
                                 </div>
                                 <hr>
                                 <div>
@@ -61,7 +65,7 @@
             createApp({
                 data() {
                     return {
-                        username: "naspen",
+                        username: "MiniPixie",
                         minecraftSkinViewer: null
                     }
                 },
@@ -88,6 +92,9 @@
                     },
                     changeEars() {
                         this.minecraftSkinViewer.loadEars('/ears.png')
+                    },
+                    setSlim(value) {
+                        this.minecraftSkinViewer.setSlim(value.target.checked)
                     },
                     setDinnerbone(value) {
                         this.minecraftSkinViewer.setDinnerbone(value.target.checked)
