@@ -17,7 +17,7 @@
                             <div class="col-4">
                                 <div id="skinviewer" class="w-full"></div>
                             </div>
-                            <div class="col offset-1">
+                            <div class="col ml-1">
                                 <div>
                                     <h4>Change User</h4>
                                     <div class="row">
@@ -32,9 +32,29 @@
                                 <hr>
                                 <div>
                                     <h4>Skin</h4>
-                                    <button class="btn btn-primary me-1" @click="changeSkin">Change Skin</button>
-                                    <button class="btn btn-primary me-1" @click="changeCape">Change Cape</button>
-                                    <button class="btn btn-primary" @click="changeEars">Change Ears</button>
+                                    <div>
+                                        <button class="btn btn-primary me-1" @click="changeSkin">Change Skin</button>
+                                        <button class="btn btn-danger me-1" @click="removeSkin">Remove Skin</button>
+                                    </div>
+                                    <br>
+                                    <h4>Cape</h4>
+                                    <div>
+                                        <button class="btn btn-primary me-1" @click="changeStaticCape">Static Cape</button>
+                                        <button class="btn btn-primary me-1" @click="changeAnimatedCape">Animated Cape</button>
+                                        <button class="btn btn-danger me-1" @click="removeCape">Remove Cape</button>
+                                    </div>
+                                    <br>
+                                    <h4>Ears</h4>
+                                    <div>
+                                        <button class="btn btn-primary" @click="changeEars">Change Ears</button>
+                                        <button class="btn btn-danger" @click="removeEars">Remove Ears</button>
+                                    </div>
+                                    <br>
+                                    <h4>Elytra</h4>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkElytra" @change="setElytra">
+                                        <label class="form-check-label" for="checkElytra">Elytra</label>
+                                    </div>
                                 </div>
                                 <hr>
                                 <div>
@@ -71,9 +91,6 @@
                         canvas: document.getElementById('skinviewer'),
                         width: 300,
                         height: 500,
-                        // skin: 'skin.png',
-                        cape: 'cape.png',
-                        // ears: 'ears.png'
                     })
                 },
                 methods: {
@@ -86,13 +103,28 @@
                         })
                     },
                     changeSkin() {
-                        this.minecraftSkinViewer.loadSkin('/steve.png')
+                        this.minecraftSkinViewer.loadSkin('/skins/skin.png')
                     },
-                    changeCape() {
-                        this.minecraftSkinViewer.loadCape('/cape-template.png')
+                    removeSkin() {
+                        this.minecraftSkinViewer.loadSkin(null);
+                    },
+                    changeStaticCape() {
+                        this.minecraftSkinViewer.loadCape('/capes/cape.png')
+                    },
+                    changeAnimatedCape() {
+                        this.minecraftSkinViewer.loadCape('/capes/cape-animated.png')
+                    },
+                    removeCape() {
+                        this.minecraftSkinViewer.loadCape(null);
                     },
                     changeEars() {
-                        this.minecraftSkinViewer.loadEars('/ears.png')
+                        this.minecraftSkinViewer.loadEars('/ears/ears.png')
+                    },
+                    removeEars() {
+                        this.minecraftSkinViewer.loadEars(null);
+                    },
+                    setElytra(value) {
+                        this.minecraftSkinViewer.setElytra(value.target.checked)
                     },
                     setDinnerbone(value) {
                         this.minecraftSkinViewer.setDinnerbone(value.target.checked)
