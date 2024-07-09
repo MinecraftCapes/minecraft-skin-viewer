@@ -7,7 +7,8 @@ export default defineConfig({
         lib: {
             entry: resolve(__dirname, 'lib/main.js'),
             name: 'Minecraft-Skin-Viewer',
-            fileName: 'minecraft-skin-viewer'
-        }
+            fileName: 'minecraft-skin-viewer',
+        },
+        outDir: '../dist'
     }
 })
