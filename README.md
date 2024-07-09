@@ -7,7 +7,7 @@ Demo - https://minecraft-skin-viewer.pages.dev
 ## Example
 ### Creating an instance
 ```js
-import MinecraftSkinViewer from '../lib/main.js'
+import MinecraftSkinViewer from '../src/main.js'
 
 this.minecraftSkinViewer = new MinecraftSkinViewer({
     canvas: document.getElementById('skinviewer'), //The div to place the canvas
