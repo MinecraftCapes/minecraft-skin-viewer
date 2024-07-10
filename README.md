@@ -37,7 +37,7 @@ this.minecraftSkinViewer.loadEars(null) //Will remove the ears
 ```
 
 ### Customisation
-You can flip the user, enable the elytra or give their cape a glint (coming soon) with the below
+You can flip the user, enable the elytra or give their cape a glint with the below
 ```js
 this.minecraftSkinViewer.setElytra(true)
 this.minecraftSkinViewer.setDinnerbone(true)
