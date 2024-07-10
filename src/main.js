@@ -13,8 +13,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { applySkin, applyCape, applyEars } from './texture.js'
 import { PlayerObject } from './model.js';
 
-const STEVE_SKIN = "http://textures.minecraft.net/texture/3fb7213b724c6bb9163e031791788dd4792436b4cd0ce7a2854f7ef231781a"
-const ALEX_SKIN = "http://textures.minecraft.net/texture/83cee5ca6afcdb171285aa00e8049c297b2dbeba0efb8ff970a5677a1b644032"
+const STEVE_SKIN = "https://textures.minecraft.net/texture/3fb7213b724c6bb9163e031791788dd4792436b4cd0ce7a2854f7ef231781a"
+const ALEX_SKIN = "https://textures.minecraft.net/texture/83cee5ca6afcdb171285aa00e8049c297b2dbeba0efb8ff970a5677a1b644032"
 
 class MinecraftSkinViewer {
     playerObject = new PlayerObject()

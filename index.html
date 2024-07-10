@@ -27,6 +27,7 @@
                                         <div class="col-4">
                                             <button class="btn btn-primary me-1" @click="changeUser">Change User</button>
                                         </div>
+                                        <strong v-if="error" class="text-danger px-3 py-1">{{error}}</strong>
                                     </div>
                                 </div>
                                 <hr>
@@ -82,6 +83,7 @@
             createApp({
                 data() {
                     return {
+                        error: null,
                         username: "MiniPixie",
                         minecraftSkinViewer: null,
                         elytraValue: false,
@@ -99,17 +101,23 @@
                 },
                 methods: {
                     async changeUser() {
-                        let mcapi = await axios.get(`https://minecraftapi.net/api/v2/profile/${this.username}`)
-                        this.minecraftSkinViewer.loadSkin(mcapi.data.skin.url)
-                        axios.get(`https://api.minecraftcapes.net/profile/${mcapi.data.uuid}`).then(response => {
-                            this.glintValue = response.data.capeGlint;
-                            this.dinnerboneValue = response.data.dinnerbone;
+                        try {
+                            let mcapi = await axios.get(`https://minecraftapi.net/api/v2/profile/${this.username}`)
+                            this.error = null;
+                            console.log(mcapi)
+                            this.minecraftSkinViewer.loadSkin(mcapi.data.skin.url)
+                            axios.get(`https://api.minecraftcapes.net/profile/${mcapi.data.uuid}`).then(response => {
+                                this.glintValue = response.data.capeGlint;
+                                this.dinnerboneValue = response.data.dinnerbone;
 
-                            this.minecraftSkinViewer.loadCape(response.data.textures.cape)
-                            this.minecraftSkinViewer.loadEars(response.data.textures.ears)
-                            this.minecraftSkinViewer.setGlint(response.data.capeGlint)
-                            this.minecraftSkinViewer.setDinnerbone(response.data.dinnerbone);
-                        })
+                                this.minecraftSkinViewer.loadCape(response.data.textures.cape)
+                                this.minecraftSkinViewer.loadEars(response.data.textures.ears)
+                                this.minecraftSkinViewer.setGlint(response.data.capeGlint)
+                                this.minecraftSkinViewer.setDinnerbone(response.data.dinnerbone);
+                            })
+                        } catch {
+                            this.error = "User was not found"
+                        }
                     },
                     changeSkin() {
                         this.minecraftSkinViewer.loadSkin('/skins/skin.png')
