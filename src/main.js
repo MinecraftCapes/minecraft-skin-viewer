@@ -78,7 +78,8 @@ class MinecraftSkinViewer {
         this.controls.update();
         this.composer.render();
 
-        this.playerObject.cape.animateCape()
+        this.playerObject.cape.animate()
+        this.playerObject.elytra.animate();
     }
     setDinnerbone(value) {
         let rotation = MathUtils.degToRad(value ? 180 : 0)
@@ -87,7 +88,7 @@ class MinecraftSkinViewer {
 
     }
     setGlint(value) {
-        //TODO
+        this.playerObject.cape.toggleGlint(value)
     }
     setElytra(value) {
         this.playerObject.cape.mesh.visible = !value
