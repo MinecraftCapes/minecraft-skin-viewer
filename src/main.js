@@ -170,4 +170,6 @@ class MinecraftSkinViewer {
     }
 }
 
+window.MinecraftSkinViewer = MinecraftSkinViewer;
+
 export default MinecraftSkinViewer
