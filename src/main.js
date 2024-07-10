@@ -10,7 +10,7 @@ import {
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass, ShaderPass, FXAAShader } from 'three/examples/jsm/Addons.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { applySkin, applyCape, applyEars, animateCape } from './texture.js'
+import { applySkin, applyCape, applyEars } from './texture.js'
 import { PlayerObject } from './model.js';
 
 const STEVE_SKIN = "http://textures.minecraft.net/texture/3fb7213b724c6bb9163e031791788dd4792436b4cd0ce7a2854f7ef231781a"
@@ -78,7 +78,7 @@ class MinecraftSkinViewer {
         this.controls.update();
         this.composer.render();
 
-        animateCape(this.playerObject)
+        this.playerObject.cape.animateCape()
     }
     setDinnerbone(value) {
         let rotation = MathUtils.degToRad(value ? 180 : 0)

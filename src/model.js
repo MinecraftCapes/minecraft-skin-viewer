@@ -1,4 +1,6 @@
+import { ShaderMaterial } from 'three';
 import {
+    Vector2,
     MeshStandardMaterial,
     DoubleSide,
     NearestFilter,
@@ -9,6 +11,7 @@ import {
     BoxGeometry
 } from 'three'
 import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
+import EnchantmentShader from './enchantment';
 
 let createCube = (width, height, depth, position, value) => {
     let cubeGeometry = new BoxGeometry(width, height, depth);
@@ -227,8 +230,23 @@ class EarObject extends PlayerPart {
 }
 
 class CapeObject extends PlayerPart {
+    //Animated Capes
+    currentFrame = 1
+    lastFrameTime = 0
+
     constructor() {
         super()
+        this.material = new ShaderMaterial({
+            vertexShader: EnchantmentShader.vertex,
+            fragmentShader: EnchantmentShader.fragment,
+            transparent: true,
+            alphaTest: 1e-5,
+            uniforms: {
+                uTexture: { type: 't', value: null },
+                uvOffset: { type: 'v', value : new Vector2(0,0) },
+                uvRepeat: { type: 'v', value: new Vector2(1, 1) }
+            }
+        })
     }
 
     generateMesh() {
@@ -244,6 +262,47 @@ class CapeObject extends PlayerPart {
 
         // Merge all cube geometries into one
         return capeMesh;
+    }
+
+    updateTexture(texture, visible = true) {
+        this.texture = texture;
+        if(this.texture != null) {
+            this.texture.magFilter = NearestFilter
+
+            //Set the texture uniform
+            this.material.uniforms.uTexture.value = texture
+
+            //Set the cape repition (for animation)
+            let frameWidth = texture.source.data.width
+            let frameHeight = texture.source.data.height
+            let totalFrames = frameHeight / (frameWidth / 2)
+            this.material.uniforms.uvRepeat.value = new Vector2(1, 1 / totalFrames)
+
+            this.mesh.visible = visible
+        } else {
+            this.mesh.visible = false;
+        }
+    }
+
+    animateCape() {
+        let capeTexture = this.material.uniforms.uTexture.value
+        if(capeTexture == null) return;
+
+        let frameWidth = capeTexture.source.data.width
+        let frameHeight = capeTexture.source.data.height
+        let totalFrames = frameHeight / (frameWidth / 2)
+
+        if(totalFrames > 1) {
+            if(this.lastFrameTime < Date.now() - 100) {
+                if(this.currentFrame > totalFrames) {
+                    this.currentFrame = 1
+                }
+
+                this.material.uniforms.uvOffset.value = new Vector2(0, this.currentFrame)
+                this.currentFrame++
+                this.lastFrameTime = Date.now()
+            }
+        }
     }
 }
 

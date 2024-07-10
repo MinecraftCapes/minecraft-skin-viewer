@@ -8,19 +8,16 @@ const EnchantmentShader = {
     `,
     fragment: `
         uniform sampler2D uTexture;
-        uniform vec3 ambientLightColor;
         varying vec2 vUv;
+        uniform vec2 uvOffset;
+        uniform vec2 uvRepeat;
 
         void main() {
-            vec4 texColor = texture2D(uTexture, vUv);
+  	        vec2 uv = fract((vUv + uvOffset) * uvRepeat);
+  	        vec2 smooth_uv = uvRepeat * vUv;
+  	        vec4 duv = vec4(dFdx(smooth_uv), dFdy(smooth_uv));
 
-            // Blend ambient light color with texture color
-            vec3 finalColor = texColor.rgb * ambientLightColor;
-
-            gl_FragColor = vec4(finalColor, texColor.a);
-
-            // Discard transparent fragments
-            if (gl_FragColor.a < 0.1) discard;
+            gl_FragColor = textureGrad(uTexture, uv, duv.xy, duv.zw).rgba;
         }
     `,
 };

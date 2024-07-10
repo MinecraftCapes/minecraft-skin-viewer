@@ -2,10 +2,6 @@ import {
     CanvasTexture
 } from 'three';
 
-//Animated Capes
-let currentFrame = 1
-let lastFrameTime = 0
-
 function hasTransparency(ctx, startX, startY, width, height) {
     let alphaData = 0;
     let imgData = ctx.getImageData(startX, startY, width, height).data
@@ -42,34 +38,6 @@ export function applyEars(playerObject, texture) {
 }
 
 export function applyCape(playerObject, texture) {
-    if(texture != null) {
-        let frameWidth = texture.source.data.width
-        let frameHeight = texture.source.data.height
-        let totalFrames = frameHeight / (frameWidth / 2)
-        texture.repeat.set(1, 1 / totalFrames);
-    }
-
     playerObject.cape.updateTexture(texture, !playerObject.elytra.mesh.visible)
     playerObject.elytra.updateTexture(texture, playerObject.elytra.mesh.visible)
-}
-
-export function animateCape(playerObject) {
-    if(playerObject.cape.material.map == null) return;
-
-    let frameWidth = playerObject.cape.material.map.source.data.width
-    let frameHeight = playerObject.cape.material.map.source.data.height
-    let totalFrames = frameHeight / (frameWidth / 2)
-
-    if(totalFrames > 1) {
-        if(lastFrameTime < Date.now() - 100) {
-            if(currentFrame > totalFrames) {
-                currentFrame = 1
-            }
-
-            playerObject.cape.material.map.offset.y = 1 - ((1 / totalFrames) * currentFrame)
-
-            currentFrame++
-            lastFrameTime = Date.now()
-        }
-    }
 }
