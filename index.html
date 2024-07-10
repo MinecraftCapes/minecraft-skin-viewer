@@ -52,7 +52,7 @@
                                     <br>
                                     <h4>Elytra</h4>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkElytra" @change="setElytra">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkElytra" @change="setElytra" v-model="elytraValue">
                                         <label class="form-check-label" for="checkElytra">Elytra</label>
                                     </div>
                                 </div>
@@ -60,12 +60,12 @@
                                 <div>
                                     <h4>Premium</h4>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkDinnerbone" @change="setDinnerbone">
-                                        <label class="form-check-label" for="checkDinnerbone">Dinnerbone</label>
+                                        <input class="form-check-input" type="checkbox" value="" id="checkGlint" @change="setGlint" v-model="glintValue">
+                                        <label class="form-check-label" for="checkGlint">Glint</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkGlint" @change="setGlint">
-                                        <label class="form-check-label" for="checkGlint">Glint</label>
+                                        <input class="form-check-input" type="checkbox" value="" id="checkDinnerbone" @change="setDinnerbone" v-model="dinnerboneValue">
+                                        <label class="form-check-label" for="checkDinnerbone">Dinnerbone</label>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,10 @@
                 data() {
                     return {
                         username: "MiniPixie",
-                        minecraftSkinViewer: null
+                        minecraftSkinViewer: null,
+                        elytraValue: false,
+                        glintValue: false,
+                        dinnerboneValue: false
                     }
                 },
                 mounted() {
@@ -99,8 +102,13 @@
                         let mcapi = await axios.get(`https://minecraftapi.net/api/v2/profile/${this.username}`)
                         this.minecraftSkinViewer.loadSkin(mcapi.data.skin.url)
                         axios.get(`https://api.minecraftcapes.net/profile/${mcapi.data.uuid}`).then(response => {
+                            this.glintValue = response.data.capeGlint;
+                            this.dinnerboneValue = response.data.dinnerbone;
+
                             this.minecraftSkinViewer.loadCape(response.data.textures.cape)
                             this.minecraftSkinViewer.loadEars(response.data.textures.ears)
+                            this.minecraftSkinViewer.setGlint(response.data.capeGlint)
+                            this.minecraftSkinViewer.setDinnerbone(response.data.dinnerbone);
                         })
                     },
                     changeSkin() {
