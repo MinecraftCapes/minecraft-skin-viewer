@@ -20,32 +20,23 @@ class MinecraftSkinViewer {
     playerObject = new PlayerObject()
 
     constructor(options) {
-        this.canvas = options.canvas;
-        this.width = options.width;
-        this.height = options.height;
-
-        this.renderer = new WebGLRenderer();
-        this.renderer.setSize(this.width, this.height);
-        this.canvas.appendChild(this.renderer.domElement);
-        options.class.split(" ").forEach(element => {
-            this.renderer.domElement.classList.add(element)
+        this.renderer = new WebGLRenderer({
+            canvas: options.canvas,
+            alpha: true
         });
+        this.canvas = this.renderer.domElement;
 
         this.scene = new Scene();
-        this.scene.add(new AmbientLight(0xffffff, Math.PI))
+        this.scene.add(new AmbientLight(0xffffff, 3))
 
-        this.camera = new PerspectiveCamera(30, this.width / this.height);
-        this.camera.add(new PointLight(0xffffff, 0.6));
+        this.camera = new PerspectiveCamera(30, this.canvas.clientWidth / this.canvas.clientHeight);
+        this.camera.add(new PointLight(0xffffff, 1));
         this.camera.position.z = 90;
         this.scene.add(this.camera)
 
         this.composer = new EffectComposer(this.renderer);
 		this.renderPass = new RenderPass(this.scene, this.camera);
 		this.fxaaPass = new ShaderPass(FXAAShader);
-
-        let pixelRatio = this.renderer.getPixelRatio();
-        this.fxaaPass.material.uniforms["resolution"].value.x = 1 / (this.width * pixelRatio);
-		this.fxaaPass.material.uniforms["resolution"].value.y = 1 / (this.height * pixelRatio);
 
 		this.composer.addPass(this.renderPass);
 		this.composer.addPass(this.fxaaPass);
@@ -72,6 +63,20 @@ class MinecraftSkinViewer {
         // Start the animation loop
         this.animate();
     }
+    resizeRendererToDisplaySize() {
+        const pixelRatio = window.devicePixelRatio;
+        const width  = Math.floor( this.canvas.clientWidth * pixelRatio );
+        const height = Math.floor( this.canvas.clientHeight * pixelRatio );
+        const needResize = Math.abs(this.canvas.width - width) > 1 || Math.abs(this.canvas.height - height) > 1;
+        if (needResize) {
+            this.renderer.setSize(width, height, false);
+            this.composer.setSize(width, height);
+
+            this.fxaaPass.material.uniforms["resolution"].value.x = 1 / (this.canvas.clientWidth * pixelRatio);
+		    this.fxaaPass.material.uniforms["resolution"].value.y = 1 / (this.canvas.clientHeight * pixelRatio);
+        }
+        return needResize;
+    }
     animate() {
         requestAnimationFrame(this.animate);
 
@@ -80,6 +85,11 @@ class MinecraftSkinViewer {
 
         this.playerObject.cape.animate()
         this.playerObject.elytra.animate();
+
+        if (this.resizeRendererToDisplaySize()) {
+            this.camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight;
+            this.camera.updateProjectionMatrix();
+        }
     }
     setDinnerbone(value) {
         let rotation = MathUtils.degToRad(value ? 180 : 0)
