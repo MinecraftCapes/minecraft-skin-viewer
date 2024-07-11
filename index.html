@@ -14,18 +14,18 @@
                         <h1>Minecraft Skin Viewer</h1>
                         <hr>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-md-4 mb-3">
                                 <div id="skinviewer" class="w-full"></div>
                             </div>
                             <div class="col ml-1">
                                 <div>
                                     <h4>Change User</h4>
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-md-8 mb-1">
                                             <input type="text" class="form-control" v-model="username"/>
                                         </div>
-                                        <div class="col-4">
-                                            <button class="btn btn-primary me-1" @click="changeUser">Change User</button>
+                                        <div class="col-md-4">
+                                            <button class="btn btn-primary w-100 me-1" @click="changeUser">Change User</button>
                                         </div>
                                         <strong v-if="error" class="text-danger px-3 py-1">{{error}}</strong>
                                     </div>
@@ -34,20 +34,20 @@
                                 <div>
                                     <h4>Skin</h4>
                                     <div>
-                                        <button class="btn btn-primary me-1" @click="changeSkin">Change Skin</button>
+                                        <button class="btn btn-primary me-1 mb-xs-1" @click="changeSkin">Change Skin</button>
                                         <button class="btn btn-danger me-1" @click="removeSkin">Remove Skin</button>
                                     </div>
                                     <br>
                                     <h4>Cape</h4>
                                     <div>
-                                        <button class="btn btn-primary me-1" @click="changeStaticCape">Static Cape</button>
-                                        <button class="btn btn-primary me-1" @click="changeAnimatedCape">Animated Cape</button>
+                                        <button class="btn btn-primary me-1 mb-xs-1" @click="changeStaticCape">Static Cape</button>
+                                        <button class="btn btn-primary me-1 mb-xs-1" @click="changeAnimatedCape">Animated Cape</button>
                                         <button class="btn btn-danger me-1" @click="removeCape">Remove Cape</button>
                                     </div>
                                     <br>
                                     <h4>Ears</h4>
                                     <div>
-                                        <button class="btn btn-primary" @click="changeEars">Change Ears</button>
+                                        <button class="btn btn-primary me-1 mb-1" @click="changeEars">Change Ears</button>
                                         <button class="btn btn-danger" @click="removeEars">Remove Ears</button>
                                     </div>
                                     <br>

@@ -91,8 +91,11 @@ class MinecraftSkinViewer {
         this.playerObject.cape.toggleGlint(value)
     }
     setElytra(value) {
-        this.playerObject.cape.mesh.visible = !value
-        this.playerObject.elytra.mesh.visible = value
+        //Don't toggle if both are not visible. This avoids a "removed cape" re-appearing
+        if(this.playerObject.cape.mesh.visible || this.playerObject.elytra.mesh.visible) {
+            this.playerObject.cape.mesh.visible = !value
+            this.playerObject.elytra.mesh.visible = value
+        }
     }
     loadSkin(src) {
         if(src == null) {
