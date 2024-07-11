@@ -81,7 +81,6 @@
                 </div>
             </div>
         </div>
-        <script type="module" src="/src/main.js"></script>
         <style>
             canvas {
                 width: 100%;
@@ -100,6 +99,7 @@
         <script type="module">
             import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
             import axios from 'https://unpkg.com/axios@1.6.7/dist/esm/axios.min.js'
+            import MinecraftSkinViewer from './src/main.js'
 
             createApp({
                 data() {
@@ -126,12 +126,12 @@
                             this.minecraftSkinViewer.loadSkin(mcapi.data.skin.url)
                             axios.get(`https://api.minecraftcapes.net/profile/${mcapi.data.uuid}`).then(response => {
                                 this.glintValue = response.data.capeGlint;
-                                this.dinnerboneValue = response.data.dinnerbone;
+                                this.dinnerboneValue = response.data.upsideDown;
 
                                 this.minecraftSkinViewer.loadCape(response.data.textures.cape)
                                 this.minecraftSkinViewer.loadEars(response.data.textures.ears)
-                                this.minecraftSkinViewer.setGlint(response.data.capeGlint)
-                                this.minecraftSkinViewer.setDinnerbone(response.data.dinnerbone);
+                                this.minecraftSkinViewer.setGlint(this.glintValue)
+                                this.minecraftSkinViewer.setDinnerbone(this.dinnerboneValue);
                             })
                         } catch {
                             this.error = "User was not found"

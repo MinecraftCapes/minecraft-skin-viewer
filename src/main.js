@@ -78,6 +78,8 @@ class MinecraftSkinViewer {
         return needResize;
     }
     animate() {
+        if(this._dispose) return;
+
         requestAnimationFrame(this.animate);
 
         this.controls.update();
@@ -90,6 +92,19 @@ class MinecraftSkinViewer {
             this.camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight;
             this.camera.updateProjectionMatrix();
         }
+    }
+    dispose() {
+        this._dispose = true;
+
+        this.renderer.dispose();
+        this.composer.dispose();
+        this.fxaaPass.dispose();
+
+        this.playerObject.skin.material.dispose();
+        this.playerObject.overlay.material.dispose();
+        this.playerObject.ears.material.dispose();
+        this.playerObject.cape.material.dispose();
+        this.playerObject.elytra.material.dispose();
     }
     setDinnerbone(value) {
         let rotation = MathUtils.degToRad(value ? 180 : 0)
@@ -118,7 +133,7 @@ class MinecraftSkinViewer {
         image.crossOrigin = "anonymous";
         image.src = src
         image.onload = () => {
-            let ctx = document.createElement('canvas').getContext('2d');
+            let ctx = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
             ctx.canvas.width = image.width;
             ctx.canvas.height = image.height;
 
@@ -176,7 +191,12 @@ class MinecraftSkinViewer {
         });
     }
     formatSrc(src) {
-        if(!src.startsWith('http://') && !src.startsWith('https://') && !src.includes('.')) {
+        if(
+            !src.startsWith('http://') &&
+            !src.startsWith('https://') &&
+            !src.startsWith('data:image/png;base64') &&
+            !src.includes('.')
+        ) {
             src = `data:image/png;base64,${src}`
         }
 

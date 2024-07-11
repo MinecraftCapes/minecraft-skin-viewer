@@ -1,15 +1,21 @@
 {
   "name": "minecraft-skin-viewer",
   "version": "0.0.1",
+  "description": "A Minecraft Skin Viewer with some extra features",
   "type": "module",
+  "author": "james090500",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minecraftcapes/minecraft-skin-viewer.git"
+  },
   "files": [
     "dist"
   ],
+  "module": "./dist/minecraft-skin-viewer.js",
   "main": "./dist/minecraft-skin-viewer.cjs",
-  "module": "./dist/minecraft-skin-viewer.es.js",
   "exports": {
     ".": {
-      "import": "./dist/minecraft-skin-viewer.es.js",
+      "import": "./dist/minecraft-skin-viewer.js",
       "require": "./dist/minecraft-skin-viewer.umd.cjs"
     }
   },
