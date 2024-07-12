@@ -15,7 +15,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-4 mb-3">
-                                <canvas id="skinviewer" class="border rounded shadow-lg"></canvas>
+                                <canvas id="minecraft-skin-viewer" class="border rounded shadow-lg"></canvas>
                             </div>
                             <div class="col ml-1">
                                 <div>
@@ -114,7 +114,7 @@
                 },
                 mounted() {
                     this.minecraftSkinViewer = new MinecraftSkinViewer({
-                        canvas: document.getElementById('skinviewer')
+                        canvas: document.getElementById('minecraft-skin-viewer')
                     })
                 },
                 methods: {

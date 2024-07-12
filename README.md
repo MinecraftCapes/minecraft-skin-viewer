@@ -10,10 +10,7 @@ Demo - https://minecraft-skin-viewer.pages.dev
 import MinecraftSkinViewer from '../src/main.js'
 
 this.minecraftSkinViewer = new MinecraftSkinViewer({
-    canvas: document.getElementById('skinviewer'), //The div to place the canvas
-    class: 'w-100 h-100', //Class on the canvas
-    width: 300, //Canvas width
-    height: 500, //Canvas height
+    canvas: document.getElementById('skinviewer'), //The canvas
     skin: '', //Skin (Optional)
     cape: '', //Cape (Optional)
     ears: '' //Ears (Optional)

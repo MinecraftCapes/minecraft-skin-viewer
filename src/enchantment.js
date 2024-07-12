@@ -1,9 +1,10 @@
 const EnchantmentShader = {
     vertex: `
         varying vec2 vUv;
+
         void main() {
             vUv = uv;
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            gl_Position = projectionMatrix * (modelViewMatrix * vec4(position, 1.0));
         }
     `,
     fragment: `
@@ -18,7 +19,7 @@ const EnchantmentShader = {
         varying vec2 vUv;
 
         void main() {
-            // Calculate UV coordinates for the texture
+            // Calculate UV coordinates for the base texture
             vec2 baseUv = fract((vUv + textureOffset) * textureRepeat);
             vec2 baseSmoothUv = textureRepeat * vUv;
             vec4 baseDuv = vec4(dFdx(baseSmoothUv), dFdy(baseSmoothUv));
@@ -26,7 +27,7 @@ const EnchantmentShader = {
             // Sample the base texture
             vec4 baseColor = textureGrad(baseTexture, baseUv, baseDuv.xy, baseDuv.zw);
 
-            // Calculate UV coordinates for the texture
+            // Calculate UV coordinates for the glimmer texture
             vec2 glintUv = fract((vUv + glintOffset) * glintRepeat);
             vec2 glintSmoothUv = glintRepeat * vUv;
             vec4 glintDuv = vec4(dFdx(glintSmoothUv), dFdy(glintSmoothUv));
