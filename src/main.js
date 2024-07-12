@@ -195,7 +195,8 @@ class MinecraftSkinViewer {
             !src.startsWith('http://') &&
             !src.startsWith('https://') &&
             !src.startsWith('data:image/png;base64') &&
-            !src.includes('.')
+            !src.startsWith('./') &&
+            !src.startsWith('/')
         ) {
             src = `data:image/png;base64,${src}`
         }
