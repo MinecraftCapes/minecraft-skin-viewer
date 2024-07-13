@@ -44,6 +44,10 @@ const EnchantmentShader = {
             // Preserve the base texture's alpha and overlay the glimmer effect
             vec3 finalColor = baseColor.rgb + finalGlimmerColor.rgb * finalGlimmerColor.a;
             gl_FragColor = vec4(finalColor, baseColor.a);
+
+            if (gl_FragColor.a < 0.0001) {
+                discard;
+            }
         }
     `,
 };

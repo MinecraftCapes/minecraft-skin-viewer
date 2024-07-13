@@ -52,7 +52,6 @@ function createUVMap(geometry, startX, startY, width, height, depth, textureWidt
     uvAttribute.setXY(index.getX(17), (startX + width + depth) / textureWidth, 1.0 - startY / textureHeight );
 
     //Bottom
-    //Top Left, Bottom Left, Top Right, Bottom Left, Bottom Right, Top Right
     uvAttribute.setXY(index.getX(18), (startX + depth + width) / textureWidth, 1.0 - (startY + depth) / textureHeight );
     uvAttribute.setXY(index.getX(19), (startX + depth + width) / textureWidth, 1.0 - startY / textureHeight );
     uvAttribute.setXY(index.getX(20), (startX + depth + (width * 2)) / textureWidth, 1.0 - (startY + depth) / textureHeight );
@@ -144,7 +143,6 @@ class AnimatedPart extends PlayerPart {
                 vertexShader: EnchantmentShader.vertex,
                 fragmentShader: EnchantmentShader.fragment,
                 transparent: true,
-                alphaTest: 1e-5,
                 side: DoubleSide,
                 uniforms: {
                     baseTexture: { type: 't', value: null },
