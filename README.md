@@ -1,4 +1,7 @@
 # Minecraft Skin Viewer
+[![CI Status](https://img.shields.io/github/actions/workflow/status/MinecraftCapes/minecraft-skin-viewer/build.yml?branch=main&label=deploy&logo=github&style=flat-square)](https://github.com/MinecraftCapes/minecraft-skin-viewer/actions?query=workflow:deploy)
+[![NPM Package](https://img.shields.io/npm/v/minecraft-skin-viewer.svg?style=flat-square)](https://www.npmjs.com/package/minecraft-skin-viewer)
+
 
 Built using THREE.js for the [MinecraftCapes](https://minecraftcapes.net) website.
 
