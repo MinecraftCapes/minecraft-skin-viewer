@@ -8,7 +8,9 @@ import {
     MathUtils
 } from 'three'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass, ShaderPass, FXAAShader } from 'three/examples/jsm/Addons.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { applySkin, applyCape, applyEars } from './texture.js'
 import { PlayerObject } from './model.js';
