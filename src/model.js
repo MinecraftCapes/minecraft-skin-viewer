@@ -189,7 +189,7 @@ class AnimatedPart extends PlayerPart {
                             this.currentFrame = 1
                         }
 
-                        this.material.uniforms.textureOffset.value = new Vector2(0, this.currentFrame)
+                        this.material.uniforms.textureOffset.value = new Vector2(0, -this.currentFrame)
                         this.currentFrame++
                     }
 
