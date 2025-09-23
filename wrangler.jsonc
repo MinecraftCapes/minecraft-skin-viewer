@@ -1,8 +1,9 @@
 {
     "name": "minecraft-skin-viewer",
     "compatibility_date": "2025-09-23",
+    "workers_dev": true,
     "assets": {
-        "directory": "./dist/client/",
+        "directory": "./example",
         "not_found_handling": "single-page-application"
     }
 }
