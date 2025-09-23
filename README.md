@@ -5,7 +5,7 @@
 
 Built using THREE.js for the [MinecraftCapes](https://minecraftcapes.net) website.
 
-Demo - https://minecraft-skin-viewer.pages.dev
+Demo - https://minecraft-skin-viewer.james090500.workers.dev
 
 ## Example
 ### Creating an instance
