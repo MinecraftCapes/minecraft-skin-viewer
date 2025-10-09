@@ -1,6 +1,6 @@
 {
   "name": "minecraft-skin-viewer",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A Minecraft Skin Viewer with some extra features",
   "type": "module",
   "author": "james090500",
@@ -25,10 +25,10 @@
     "build:preview": "vite --config vite-preview.config.js build"
   },
   "devDependencies": {
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "@cloudflare/vite-plugin": "^1.13.3"
   },
   "dependencies": {
-    "@cloudflare/vite-plugin": "^1.13.3",
     "three": "^0.180.0"
   }
 }
