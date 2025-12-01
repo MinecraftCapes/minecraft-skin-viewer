@@ -149,9 +149,7 @@ class AnimatedPart extends PlayerPart {
                     glimmerTexture: { type: 't', value: null },
                     textureOffset: { type: 'v', value : new Vector2(0, 0) },
                     textureRepeat: { type: 'v', value: new Vector2(1, 1) },
-                    glintOffset: { type: 'v', value : new Vector2(0, 0) },
-                    glintRepeat: { type: 'v', value: new Vector2(0.25, 0.25) },
-                    glimmerOpacity: { type: 'f', value: 0.75 }
+                    glintOffset: { type: 'v', value : new Vector2(0, 0) }
                 }
             })
         }
@@ -176,7 +174,7 @@ class AnimatedPart extends PlayerPart {
             }
         }
 
-        animate() {
+        animate(delta) {
             let texture = this.material.uniforms.baseTexture.value
             if(texture != null) {
                 let frameWidth = texture.source.data.width
@@ -192,14 +190,13 @@ class AnimatedPart extends PlayerPart {
                         this.material.uniforms.textureOffset.value = new Vector2(0, -this.currentFrame)
                         this.currentFrame++
                     }
-
-                    let glintVec = this.material.uniforms.glintOffset.value
-
-                    glintVec.x += 0.05
-                    glintVec.z += 0.05
-
                     this.lastFrameTime = Date.now()
                 }
+
+                const glintVec = this.material.uniforms.glintOffset.value
+                glintVec.x -= 0.2 * delta
+                glintVec.y -= 0.5 * delta
+
             }
         }
 }

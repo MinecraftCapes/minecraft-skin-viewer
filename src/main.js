@@ -5,7 +5,8 @@ import {
     PerspectiveCamera,
     PointLight,
     TextureLoader,
-    MathUtils
+    MathUtils,
+    Clock
 } from 'three'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
@@ -20,6 +21,8 @@ const ALEX_SKIN = "https://textures.minecraft.net/texture/83cee5ca6afcdb171285aa
 
 class MinecraftSkinViewer {
     playerObject = new PlayerObject()
+
+    clock = new Clock();
 
     constructor(options) {
         this.renderer = new WebGLRenderer({
@@ -84,10 +87,12 @@ class MinecraftSkinViewer {
 
         requestAnimationFrame(this.animate);
 
+        const delta = this.clock.getDelta();
+
         this.controls.update();
         this.composer.render();
 
-        this.playerObject.cape.animate()
+        this.playerObject.cape.animate(delta)
         this.playerObject.elytra.animate();
 
         if (this.resizeRendererToDisplaySize()) {
