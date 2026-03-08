@@ -13,6 +13,7 @@
   ],
   "module": "./dist/minecraft-skin-viewer.js",
   "main": "./dist/minecraft-skin-viewer.cjs",
+  "typings": "./index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/minecraft-skin-viewer.js",
