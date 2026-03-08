@@ -9,7 +9,8 @@
     "url": "git+https://github.com/minecraftcapes/minecraft-skin-viewer.git"
   },
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "module": "./dist/minecraft-skin-viewer.js",
   "main": "./dist/minecraft-skin-viewer.cjs",
