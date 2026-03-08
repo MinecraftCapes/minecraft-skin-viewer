@@ -17,6 +17,7 @@
   "typings": "./index.d.ts",
   "exports": {
     ".": {
+      "types": "./index.d.ts",
       "import": "./dist/minecraft-skin-viewer.js",
       "require": "./dist/minecraft-skin-viewer.umd.cjs"
     }
