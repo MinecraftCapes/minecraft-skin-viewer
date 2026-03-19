@@ -97,8 +97,8 @@
             }
         </style>
         <script type="module">
-            import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-            import axios from 'https://unpkg.com/axios@1.6.7/dist/esm/axios.min.js'
+            import { createApp } from 'https://unpkg.com/vue@latest/dist/vue.esm-browser.js'
+            import axios from 'https://unpkg.com/axios@latest/dist/esm/axios.min.js'
             import MinecraftSkinViewer from './src/main.js'
 
             createApp({
@@ -120,9 +120,8 @@
                 methods: {
                     async changeUser() {
                         try {
-                            let mcapi = await axios.get(`https://minecraftapi.net/api/v2/profile/${this.username}`)
+                            let mcapi = await axios.get(`https://api.minecraftapi.net/v3/profile/${this.username}`)
                             this.error = null;
-                            console.log(mcapi)
                             this.minecraftSkinViewer.loadSkin(mcapi.data.skin.url)
                             axios.get(`https://api.minecraftcapes.net/profile/${mcapi.data.uuid}`).then(response => {
                                 this.glintValue = response.data.capeGlint;

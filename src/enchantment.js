@@ -52,6 +52,6 @@ const EnchantmentShader = {
             }
         }
     `,
-};
+}
 
 export default EnchantmentShader

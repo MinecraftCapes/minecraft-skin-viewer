@@ -1,6 +1,6 @@
 {
   "name": "minecraft-skin-viewer",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "A Minecraft Skin Viewer with some extra features",
   "type": "module",
   "author": "james090500",
@@ -25,11 +25,21 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:preview": "vite --config vite-preview.config.js build"
+    "build:preview": "vite --config vite-preview.config.js build",
+    "format": "npm run lint && npm run prettier",
+    "lint": "eslint ./src --fix",
+    "prettier": "prettier ./src --write"
   },
   "devDependencies": {
-    "vite": "^7.3.1",
-    "@cloudflare/vite-plugin": "^1.26.1"
+    "@cloudflare/vite-plugin": "^1.29.1",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.4.0",
+    "prettier": "^3.8.1",
+    "vite": "^8.0.1",
+    "vite-plugin-eslint": "^1.8.1"
   },
   "dependencies": {
     "three": "^0.183.2"
