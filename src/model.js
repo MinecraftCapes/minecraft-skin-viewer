@@ -13,7 +13,7 @@ import {
 import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 import EnchantmentShader from './enchantment'
 import { TextureLoader } from 'three'
-import GlintImage from './glint'
+import GlintImage from './assets/Glint.png'
 
 const createCube = (width, height, depth, position, value) => {
     const cubeGeometry = new BoxGeometry(width, height, depth)

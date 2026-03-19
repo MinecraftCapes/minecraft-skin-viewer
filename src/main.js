@@ -6,7 +6,7 @@ import {
     PointLight,
     TextureLoader,
     MathUtils,
-    Clock,
+    Timer,
 } from 'three'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
@@ -24,7 +24,7 @@ const ALEX_SKIN =
 class MinecraftSkinViewer {
     playerObject = new PlayerObject()
 
-    clock = new Clock()
+    timer = new Timer()
 
     constructor(options) {
         this.renderer = new WebGLRenderer({
@@ -94,9 +94,11 @@ class MinecraftSkinViewer {
     animate() {
         if (this._dispose) return
 
+        this.timer.update()
+
         requestAnimationFrame(this.animate)
 
-        const delta = this.clock.getDelta()
+        const delta = this.timer.getDelta()
 
         this.controls.update()
         this.composer.render()
@@ -167,18 +169,29 @@ class MinecraftSkinViewer {
         image.src = src
     }
     loadCape(src) {
-        if (src == null) return applyCape(this.playerObject, null)
+        if (src == null) {
+            return applyCape(this.playerObject, null)
+        }
 
         src = this.formatSrc(src)
 
-        this.textureLoader.load(src, (texture) => {
-            applyCape(this.playerObject, texture)
-        })
+        const image = new Image()
+        image.crossOrigin = 'anonymous'
+
+        // Try load skin
+        image.onload = () => {
+            applyCape(this.playerObject, image)
+        }
+
+        //Reset Skin
+        image.onerror = () => {
+            console.error(`Image failed to load: ${src}`)
+        }
+
+        image.src = src
     }
     loadEars(src) {
-        if (src == null) {
-            return applyEars(this.playerObject, null)
-        }
+        if (src == null) return applyEars(this.playerObject, null)
 
         src = this.formatSrc(src)
 
@@ -188,6 +201,7 @@ class MinecraftSkinViewer {
     }
     formatSrc(src) {
         if (
+            !src.startsWith('blob:') &&
             !src.startsWith('http://') &&
             !src.startsWith('https://') &&
             !src.startsWith('data:image/png;base64') &&
