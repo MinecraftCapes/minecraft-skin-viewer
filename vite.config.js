@@ -5,8 +5,8 @@ import eslint from 'vite-plugin-eslint'
 export default defineConfig({
     plugins: [eslint()],
     build: {
-        rollupOptions: {
-            treeshake: 'smallest',
+        rolldownOptions: {
+            treeshake: true,
         },
         copyPublicDir: false,
         lib: {
