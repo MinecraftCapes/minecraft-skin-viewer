@@ -51,6 +51,8 @@ export function applySkin(playerObject, image) {
     // It important we check this prior to any alpha changes
     if (isSlimModel(imageData)) {
         playerObject.setSlim(true)
+    } else {
+        playerObject.setSlim(false)
     }
 
     // Remove alpha
