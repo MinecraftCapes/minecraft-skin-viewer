@@ -204,7 +204,7 @@ class MinecraftSkinViewer {
             !src.startsWith('blob:') &&
             !src.startsWith('http://') &&
             !src.startsWith('https://') &&
-            !src.startsWith('data:image/png;base64') &&
+            !src.startsWith('data:image/') &&
             !src.startsWith('./') &&
             !src.startsWith('/')
         ) {
