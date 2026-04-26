@@ -13,17 +13,21 @@ Demo - https://minecraft-skin-viewer.james090500.workers.dev
 import MinecraftSkinViewer from '../src/main.js'
 
 this.minecraftSkinViewer = new MinecraftSkinViewer({
-    canvas: document.getElementById('skinviewer'), //The canvas
-    skin: '', //Skin (Optional)
-    cape: '', //Cape (Optional)
-    ears: '' //Ears (Optional)
+    canvas: HTMLCanvasElement //The canvas
+    skin?: string //Skin (Optional)
+    model?: string | "classic" | "slim" | null //Model (Optional)
+    cape?: string //Cape (Optional)
+    ears?: string //Ears (Optional)
+    dinnerbone?: boolean //Dinnerbone (upside down) (Optional)
+    glint?: boolean // Glint (cape enchantment glint) (Optional
 })
 ```
 
 ### Loading a skin, cape or ears
 You can load a skin, cape or ears using a relative path, url or even base64.
+You can change the model by providing "classic", "slim" or null for a best guess
 ```js
-this.minecraftSkinViewer.loadSkin('/skins/skin.png')
+this.minecraftSkinViewer.loadSkin('/skins/skin.png', 'classic')
 this.minecraftSkinViewer.loadCape('https://api.minecraftcapes.net/profile/ba4161c03a42496c8ae07d13372f3371/cape')
 this.minecraftSkinViewer.loadEars('iVBORw0KGgoAAAANSUhEUgAAAA4AAAAHCAYAAAA4R3wZAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAXklEQVQYlWP8//8/Q93Z7P8MDAwM7x5/YBCSFWCAAWQ+MrvJeCojY+2ZrP8MSABdMzqAybMgC+CyCRtgwifJwMCA1fZ3jz9ANOKSxGcYEy4FQrICeDWzwGzDZis+OQC7EjD/iYogOAAAAABJRU5ErkJggg==')
 ```

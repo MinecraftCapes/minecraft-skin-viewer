@@ -8,7 +8,7 @@ import {
 } from './utils'
 import ElytraTemplate from './assets/ElytraTemplate.png'
 
-export function applySkin(playerObject, image) {
+export function applySkin(playerObject, image, model) {
     if (image.width !== 64 || (image.height !== 32 && image.height !== 64)) {
         throw new Error(
             `Discarding incorrectly sized (${image.width}x${image.height}) skin texture`
@@ -49,10 +49,16 @@ export function applySkin(playerObject, image) {
 
     // Set skin model
     // It important we check this prior to any alpha changes
-    if (isSlimModel(imageData)) {
-        playerObject.setSlim(true)
-    } else {
+    if (model == null) {
+        if (isSlimModel(imageData)) {
+            playerObject.setSlim(true)
+        } else {
+            playerObject.setSlim(false)
+        }
+    } else if (model.toLowerCase() == 'classic') {
         playerObject.setSlim(false)
+    } else if (model.toLowerCase() == 'slim') {
+        playerObject.setSlim(true)
     }
 
     // Remove alpha

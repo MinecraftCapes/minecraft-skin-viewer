@@ -56,7 +56,7 @@ class MinecraftSkinViewer {
 
         // Load Textures
         this.textureLoader = new TextureLoader()
-        this.loadSkin(options.skin)
+        this.loadSkin(options.skin, options.model)
         this.loadCape(options.cape)
         this.loadEars(options.ears)
 
@@ -143,9 +143,11 @@ class MinecraftSkinViewer {
             this.playerObject.elytra.mesh.visible = value
         }
     }
-    loadSkin(src, dontFailOver = false) {
+    loadSkin(src, model, dontFailOver = false) {
         if (src == null) {
-            src = Math.random() >= 0.5 ? STEVE_SKIN : ALEX_SKIN
+            const random = Math.random() >= 0.5
+            src = random ? STEVE_SKIN : ALEX_SKIN
+            model = random ? 'classic' : 'slim'
         }
 
         src = this.formatSrc(src)
@@ -155,14 +157,14 @@ class MinecraftSkinViewer {
 
         // Try load skin
         image.onload = () => {
-            applySkin(this.playerObject, image)
+            applySkin(this.playerObject, image, model)
         }
 
         //Reset Skin
         image.onerror = () => {
             console.error(`Image failed to load: ${src}`)
             if (!dontFailOver) {
-                this.loadSkin(null, true)
+                this.loadSkin(null, model, true)
             }
         }
 

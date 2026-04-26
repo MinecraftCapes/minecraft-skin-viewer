@@ -2,6 +2,7 @@ export default class MinecraftSkinViewer {
   constructor(options: {
     canvas: HTMLCanvasElement
     skin?: string
+    model?: string | "classic" | "slim" | null
     cape?: string
     ears?: string
     dinnerbone?: boolean
@@ -12,9 +13,10 @@ export default class MinecraftSkinViewer {
    * Load a skin using a relative path, url or base64
    *
    * @param skin - The skin to load, setting to `null` will load a random Steve or Alex skin
+   * @param model - The model to use (classic, slim or null which will guess)
    * @param dontFailOver - An optional failover paramater, defaults to false. If true, it will not fallback to Steve/Alex if skin fails to load
    */
-  loadSkin(skin: string | null, dontFailOver?: boolean): void;
+  loadSkin(skin: string | null, model?: string | "classic" | "slim" | null, dontFailOver?: boolean): void;
   /**
    * Load a cape using a relative path, url or base64
    *

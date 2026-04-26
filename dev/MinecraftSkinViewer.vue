@@ -8,6 +8,19 @@
                     id="minecraft-skin-viewer"
                     class="border rounded shadow-lg"
                 ></canvas>
+                <hr />
+                <div class="form-check form-switch">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkDinnerbone"
+                        @change="setAutoRotate"
+                    />
+                    <label class="form-check-label" for="checkDinnerbone"
+                        >Auto Rotate</label
+                    >
+                </div>
             </div>
             <div class="col ml-1">
                 <div>
@@ -189,16 +202,10 @@
 <style>
 canvas {
     width: 100%;
-    height: 100%;
+    height: 60vh;
     display: block;
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUgIDAcHCq70aXDAAAAE0lEQVQI12P4/5+BgZoEA3VNBADtvT/BrQ+bEwAAAABJRU5ErkJggg==');
     background-repeat: repeat;
-}
-
-@media (max-width: 576px) {
-    canvas {
-        height: 50vh;
-    }
 }
 </style>
 
@@ -294,6 +301,11 @@ export default {
         },
         removeEars() {
             this.minecraftSkinViewer.loadEars(null)
+        },
+        setAutoRotate() {
+            this.minecraftSkinViewer.controls.autoRotate =
+                !this.minecraftSkinViewer.controls.autoRotate
+            this.minecraftSkinViewer.controls.autoRotateSpeed = 10
         },
         setElytra(value) {
             this.minecraftSkinViewer.setElytra(value.target.checked)
