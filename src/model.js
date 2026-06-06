@@ -7,7 +7,6 @@ import {
     Vector3,
     Mesh,
     Group,
-    MathUtils,
     BoxGeometry,
 } from 'three'
 import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
@@ -512,10 +511,10 @@ class CapeObject extends AnimatedPart {
     generateMesh() {
         //Cape
         const capeGeometry = new BoxGeometry(10, 16, 1)
-        capeGeometry.translate(0, -3, 4)
+        capeGeometry.translate(0, -2.5, 3.5)
         createUVMap(capeGeometry, 0, 0, 10, 16, 1, 64, 32)
-        capeGeometry.rotateX(-0.25)
-        capeGeometry.rotateY(MathUtils.degToRad(180))
+        capeGeometry.rotateX(-0.15)
+        capeGeometry.rotateY(Math.PI)
 
         const capeMesh = new Mesh(capeGeometry, this.material)
         capeMesh.name = 'Cape'

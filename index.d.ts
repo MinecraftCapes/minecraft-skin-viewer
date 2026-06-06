@@ -1,6 +1,7 @@
 export default class MinecraftSkinViewer {
   constructor(options: {
     canvas: HTMLCanvasElement
+    isometric?: boolean
     skin?: string
     model?: string | "classic" | "slim" | null
     cape?: string

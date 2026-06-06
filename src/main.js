@@ -2,6 +2,7 @@ import {
     WebGLRenderer,
     Scene,
     AmbientLight,
+    OrthographicCamera,
     PerspectiveCamera,
     PointLight,
     TextureLoader,
@@ -36,12 +37,25 @@ class MinecraftSkinViewer {
         this.scene = new Scene()
         this.scene.add(new AmbientLight(0xffffff, 3))
 
-        this.camera = new PerspectiveCamera(
-            30,
-            this.canvas.clientWidth / this.canvas.clientHeight
-        )
-        this.camera.add(new PointLight(0xffffff, 1))
+        if (options.isometric) {
+            this.camera = new OrthographicCamera(
+                this.canvas.clientWidth / -2,
+                this.canvas.clientWidth / 2,
+                this.canvas.clientHeight / 2,
+                this.canvas.clientHeight / -2,
+                1,
+                1000
+            )
+            this.camera.zoom = 10
+            this.camera.updateProjectionMatrix()
+        } else {
+            this.camera = new PerspectiveCamera(
+                30,
+                this.canvas.clientWidth / this.canvas.clientHeight
+            )
+        }
         this.camera.position.z = 90
+        this.camera.add(new PointLight(0xffffff, 1))
         this.scene.add(this.camera)
 
         this.composer = new EffectComposer(this.renderer)
@@ -114,6 +128,10 @@ class MinecraftSkinViewer {
     }
     dispose() {
         this._dispose = true
+
+        while (this.scene.children.length > 0) {
+            this.scene.remove(this.scene.children[0])
+        }
 
         this.renderer.dispose()
         this.composer.dispose()

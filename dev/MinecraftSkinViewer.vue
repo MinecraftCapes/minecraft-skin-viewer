@@ -14,6 +14,19 @@
                         class="form-check-input"
                         type="checkbox"
                         value=""
+                        id="checkIsometric"
+                        @change="setIsometric"
+                        v-model="isometricValue"
+                    />
+                    <label class="form-check-label" for="checkIsometric"
+                        >Isometric View</label
+                    >
+                </div>
+                <div class="form-check form-switch">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
                         id="checkDinnerbone"
                         @change="setAutoRotate"
                     />
@@ -217,6 +230,7 @@ export default {
     data() {
         return {
             error: null,
+            isometricValue: false,
             username: 'MiniPixie',
             minecraftSkinViewer: null,
             elytraValue: false,
@@ -230,7 +244,7 @@ export default {
         })
     },
     unmounted() {
-        this.minecraftSkinViewer.destroy()
+        this.minecraftSkinViewer.dispose()
     },
     methods: {
         async changeUser() {
@@ -301,6 +315,13 @@ export default {
         },
         removeEars() {
             this.minecraftSkinViewer.loadEars(null)
+        },
+        setIsometric() {
+            this.minecraftSkinViewer.dispose()
+            this.minecraftSkinViewer = new MinecraftSkinViewer({
+                canvas: document.getElementById('minecraft-skin-viewer'),
+                isometric: this.isometricValue,
+            })
         },
         setAutoRotate() {
             this.minecraftSkinViewer.controls.autoRotate =
