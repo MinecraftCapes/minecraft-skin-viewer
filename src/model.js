@@ -437,7 +437,7 @@ class OverlayObject extends PlayerPart {
         const overlayGeometry = []
 
         //Overlay
-        createCube(8.5, 8.5, 8.5, new Vector3(0, 10, 0), overlayGeometry) //Head
+        createCube(8.75, 8.75, 8.75, new Vector3(0, 10, 0), overlayGeometry) //Head
         createUVMap(overlayGeometry[0], 32, 0, 8, 8, 8, 64, 64)
 
         createCube(8.5, 12.5, 4.5, new Vector3(0, 0, 0), overlayGeometry) //Body

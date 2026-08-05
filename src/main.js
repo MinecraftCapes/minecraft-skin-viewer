@@ -4,7 +4,7 @@ import {
     AmbientLight,
     OrthographicCamera,
     PerspectiveCamera,
-    PointLight,
+    DirectionalLight,
     TextureLoader,
     MathUtils,
     Timer,
@@ -35,7 +35,7 @@ class MinecraftSkinViewer {
         this.canvas = this.renderer.domElement
 
         this.scene = new Scene()
-        this.scene.add(new AmbientLight(0xffffff, 3))
+        this.scene.add(new AmbientLight(0xffffff, 1.85))
 
         if (options.isometric) {
             const aspect = this.canvas.clientWidth / this.canvas.clientHeight
@@ -61,7 +61,6 @@ class MinecraftSkinViewer {
             this.camera.position.z = 90
         }
 
-        this.camera.add(new PointLight(0xffffff, 1))
         this.scene.add(this.camera)
 
         this.composer = new EffectComposer(this.renderer)
@@ -89,6 +88,11 @@ class MinecraftSkinViewer {
 
         // Bind the animate method to ensure the correct context
         this.animate = this.animate.bind(this)
+
+        // Add lighting for improved shadows
+        const light = new DirectionalLight(0xffffff, 1.25)
+        light.position.set(0, 0, 0)
+        this.camera.add(light)
 
         // Start the animation loop
         this.animate()
