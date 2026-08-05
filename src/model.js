@@ -274,7 +274,9 @@ class PlayerPart {
     updateTexture(texture, visible = true) {
         this.texture = texture
         if (this.texture != null) {
+            this.texture.minFilter = NearestFilter
             this.texture.magFilter = NearestFilter
+            this.texture.generateMipmaps = false
             this.mesh.visible = visible
         } else {
             this.mesh.visible = false
@@ -316,7 +318,9 @@ class AnimatedPart extends PlayerPart {
     updateTexture(texture, visible = true) {
         this.texture = texture
         if (this.texture != null) {
+            this.texture.minFilter = NearestFilter
             this.texture.magFilter = NearestFilter
+            this.texture.generateMipmaps = false
 
             //Set the texture uniform
             this.material.uniforms.baseTexture.value = texture
@@ -505,7 +509,9 @@ class CapeObject extends AnimatedPart {
 
         const loader = new TextureLoader()
         this.glintTexture = loader.load(GlintImage)
+        this.glintTexture.minFilter = NearestFilter
         this.glintTexture.magFilter = NearestFilter
+        this.glintTexture.generateMipmaps = false
     }
 
     generateMesh() {

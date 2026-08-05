@@ -322,6 +322,9 @@ export default {
                 canvas: document.getElementById('minecraft-skin-viewer'),
                 isometric: this.isometricValue,
             })
+
+            this.minecraftSkinViewer.camera.position.set(10, 10, 10)
+            this.minecraftSkinViewer.camera.updateProjectionMatrix()
         },
         setAutoRotate() {
             this.minecraftSkinViewer.controls.autoRotate =

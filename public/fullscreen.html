@@ -1,0 +1,30 @@
+<body style="margin:0; overflow:hidden;">
+    <canvas
+        style="width:100%;height:100%;display:block;"
+        id="minecraft-skin-viewer"
+    ></canvas>
+    <script type="module">
+        import MinecraftSkinViewer from './src/main.js'
+        const minecraftSkinViewer = new MinecraftSkinViewer({
+            canvas: document.getElementById('minecraft-skin-viewer'),
+            isometric: true,
+            skin: "https://api.minecraftapi.net/v3/profile/ba4161c03a42496c8ae07d13372f3371/skin",
+            cape: "https://api.minecraftcapes.net/profile/ba4161c03a42496c8ae07d13372f3371/cape",
+            ears: "https://api.minecraftcapes.net/profile/ba4161c03a42496c8ae07d13372f3371/ears",
+            glint: true,
+            dinnerbone: false
+        })
+
+        //minecraftSkinViewer.setElytra(false)
+
+        minecraftSkinViewer.playerObject.group.rotation.y = Math.PI
+
+        minecraftSkinViewer.camera.position.set( 10, 10, 10 );
+        minecraftSkinViewer.camera.updateProjectionMatrix()
+
+        document.body.insertAdjacentHTML(
+            'beforeend',
+            '<div id="render-ready"></div>'
+        );
+    </script>
+</body>

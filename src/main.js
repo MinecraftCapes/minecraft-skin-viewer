@@ -38,23 +38,29 @@ class MinecraftSkinViewer {
         this.scene.add(new AmbientLight(0xffffff, 3))
 
         if (options.isometric) {
+            const aspect = this.canvas.clientWidth / this.canvas.clientHeight
+
+            const orthoHeight = 48
+            const orthoWidth = orthoHeight * aspect
+
             this.camera = new OrthographicCamera(
-                this.canvas.clientWidth / -2,
-                this.canvas.clientWidth / 2,
-                this.canvas.clientHeight / 2,
-                this.canvas.clientHeight / -2,
-                1,
-                1000
+                -orthoWidth / 2,
+                orthoWidth / 2,
+                orthoHeight / 2,
+                -orthoHeight / 2,
+                0.1,
+                200
             )
-            this.camera.zoom = 10
-            this.camera.updateProjectionMatrix()
         } else {
             this.camera = new PerspectiveCamera(
                 30,
-                this.canvas.clientWidth / this.canvas.clientHeight
+                this.canvas.clientWidth / this.canvas.clientHeight,
+                0.1,
+                200
             )
+            this.camera.position.z = 90
         }
-        this.camera.position.z = 90
+
         this.camera.add(new PointLight(0xffffff, 1))
         this.scene.add(this.camera)
 
@@ -91,9 +97,11 @@ class MinecraftSkinViewer {
         const pixelRatio = window.devicePixelRatio
         const width = Math.floor(this.canvas.clientWidth * pixelRatio)
         const height = Math.floor(this.canvas.clientHeight * pixelRatio)
+
         const needResize =
             Math.abs(this.canvas.width - width) > 1 ||
             Math.abs(this.canvas.height - height) > 1
+
         if (needResize) {
             this.renderer.setSize(width, height, false)
             this.composer.setSize(width, height)
@@ -102,7 +110,24 @@ class MinecraftSkinViewer {
                 1 / (this.canvas.clientWidth * pixelRatio)
             this.fxaaPass.material.uniforms['resolution'].value.y =
                 1 / (this.canvas.clientHeight * pixelRatio)
+
+            const aspect = this.canvas.clientWidth / this.canvas.clientHeight
+
+            if (this.camera.isPerspectiveCamera) {
+                this.camera.aspect = aspect
+            } else if (this.camera.isOrthographicCamera) {
+                const orthoHeight = 48
+                const orthoWidth = orthoHeight * aspect
+
+                this.camera.left = -orthoWidth / 2
+                this.camera.right = orthoWidth / 2
+                this.camera.top = orthoHeight / 2
+                this.camera.bottom = -orthoHeight / 2
+            }
+
+            this.camera.updateProjectionMatrix()
         }
+
         return needResize
     }
     animate() {
