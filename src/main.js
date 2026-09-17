@@ -91,7 +91,7 @@ class MinecraftSkinViewer {
 
         // Add lighting for improved shadows
         const light = new DirectionalLight(0xffffff, 1.25)
-        light.position.set(0, 0, 0)
+        light.position.set(-10, 0, -10)
         this.camera.add(light)
 
         // Start the animation loop

@@ -32,28 +32,28 @@
     "bump": "ncu -u && npm update && npm i && npm ci"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.51.0",
+    "@cloudflare/vite-plugin": "^1.55.0",
     "@eslint/js": "^10.0.1",
-    "@vitejs/plugin-vue": "^6.0.8",
-    "axios": "^1.19.0",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "axios": "^1.20.0",
     "bootstrap": "^5.3.8",
-    "eslint": "^10.8.0",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",
-    "eslint-plugin-vue": "^10.10.0",
-    "globals": "^17.9.0",
-    "npm-check-updates": "^23.0.1",
-    "prettier": "^3.9.6",
-    "vite": "^8.2.0",
+    "eslint-plugin-vue": "^10.11.0",
+    "globals": "^17.12.0",
+    "npm-check-updates": "^23.1.0",
+    "prettier": "^3.9.7",
+    "vite": "^8.3.0",
     "vite-plugin-eslint": "^1.8.1",
-    "vue": "^3.5.41"
+    "vue": "^3.5.43"
   },
   "dependencies": {
-    "three": "^0.185.1"
+    "three": "^0.186.0"
   },
   "allowScripts": {
     "sharp@0.34.5": true,
     "esbuild@0.28.1": true,
-    "workerd@1.20260801.1": true
+    "workerd@1.20260917.1": true
   }
 }
