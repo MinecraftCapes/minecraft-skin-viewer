@@ -1,6 +1,7 @@
 import AnimatedRender from './AnimatedRender'
-import { BoxGeometry, Mesh } from 'three'
-import { BufferGeometryUtils } from 'three/examples/jsm/Addons.js'
+import { BoxGeometry } from 'three/src/geometries/BoxGeometry.js'
+import { Mesh } from 'three/src/objects/Mesh.js'
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 
 export default class ElytraRender extends AnimatedRender {
     constructor() {

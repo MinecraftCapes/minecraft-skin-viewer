@@ -1,4 +1,4 @@
-import { CanvasTexture } from 'three'
+import { CanvasTexture } from 'three/src/textures/CanvasTexture.js'
 import {
     setNoAlpha,
     fillRect,

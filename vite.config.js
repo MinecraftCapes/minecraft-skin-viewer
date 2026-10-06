@@ -4,10 +4,16 @@ import eslint from 'vite-plugin-eslint'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
+    resolve: {
+        alias: [{ find: /^three$/, replacement: 'three/src/Three.js' }],
+    },
     plugins: [vue(), eslint()],
     build: {
         rolldownOptions: {
             treeshake: true,
+            output: {
+                minify: { compress: true, mangle: true, codegen: true },
+            },
         },
         copyPublicDir: false,
         lib: {

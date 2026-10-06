@@ -1,6 +1,8 @@
 import Render from './Render'
-import { BoxGeometry, Mesh, Group } from 'three'
-import { BufferGeometryUtils } from 'three/examples/jsm/Addons.js'
+import { BoxGeometry } from 'three/src/geometries/BoxGeometry.js'
+import { Mesh } from 'three/src/objects/Mesh.js'
+import { Group } from 'three/src/objects/Group.js'
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 
 export default class PlayerRender extends Render {
     constructor() {

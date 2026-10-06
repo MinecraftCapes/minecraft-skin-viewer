@@ -1,6 +1,7 @@
 import Render from './Render'
-import { Vector3, Mesh } from 'three'
-import { BufferGeometryUtils } from 'three/examples/jsm/Addons.js'
+import { Vector3 } from 'three/src/math/Vector3.js'
+import { Mesh } from 'three/src/objects/Mesh.js'
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 
 export default class EarRender extends Render {
     constructor() {

@@ -1,5 +1,7 @@
 import Render from './Render'
-import { ShaderMaterial, DoubleSide, NearestFilter, Vector2 } from 'three'
+import { ShaderMaterial } from 'three/src/materials/ShaderMaterial.js'
+import { DoubleSide, NearestFilter } from 'three/src/constants.js'
+import { Vector2 } from 'three/src/math/Vector2.js'
 import EnchantmentShader from '../enchantment'
 
 export default class AnimatedRender extends Render {

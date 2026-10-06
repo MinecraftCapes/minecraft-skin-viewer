@@ -1,9 +1,6 @@
-import {
-    MeshStandardMaterial,
-    DoubleSide,
-    BoxGeometry,
-    NearestFilter,
-} from 'three'
+import { MeshStandardMaterial } from 'three/src/materials/MeshStandardMaterial.js'
+import { DoubleSide, NearestFilter } from 'three/src/constants.js'
+import { BoxGeometry } from 'three/src/geometries/BoxGeometry.js'
 
 export default class Render {
     constructor() {

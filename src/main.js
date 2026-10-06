@@ -1,14 +1,12 @@
-import {
-    WebGLRenderer,
-    Scene,
-    AmbientLight,
-    OrthographicCamera,
-    PerspectiveCamera,
-    DirectionalLight,
-    TextureLoader,
-    MathUtils,
-    Timer,
-} from 'three'
+import { WebGLRenderer } from 'three/src/renderers/WebGLRenderer.js'
+import { Scene } from 'three/src/scenes/Scene.js'
+import { AmbientLight } from 'three/src/lights/AmbientLight.js'
+import { OrthographicCamera } from 'three/src/cameras/OrthographicCamera.js'
+import { PerspectiveCamera } from 'three/src/cameras/PerspectiveCamera.js'
+import { DirectionalLight } from 'three/src/lights/DirectionalLight.js'
+import { TextureLoader } from 'three/src/loaders/TextureLoader.js'
+import { MathUtils } from 'three/src/math/MathUtils.js'
+import { Timer } from 'three/src/core/Timer.js'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'

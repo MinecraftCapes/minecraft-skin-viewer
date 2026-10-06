@@ -1,5 +1,8 @@
 import AnimatedRender from './AnimatedRender'
-import { TextureLoader, BoxGeometry, NearestFilter, Mesh } from 'three'
+import { TextureLoader } from 'three/src/loaders/TextureLoader.js'
+import { BoxGeometry } from 'three/src/geometries/BoxGeometry.js'
+import { NearestFilter } from 'three/src/constants.js'
+import { Mesh } from 'three/src/objects/Mesh.js'
 import GlintImage from '../assets/Glint.png'
 
 export default class CapeRender extends AnimatedRender {

@@ -1,4 +1,4 @@
-import { Group } from 'three'
+import { Group } from 'three/src/objects/Group.js'
 import PlayerRender from './render/PlayerRender.js'
 import EarRender from './render/EarRender.js'
 import CapeRender from './render/CapeRender.js'
