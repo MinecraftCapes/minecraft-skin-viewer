@@ -24,8 +24,8 @@ const ALEX_SKIN =
 
 class MinecraftSkinViewer {
     playerObject = new PlayerObject()
-
     timer = new Timer()
+    animatePlayer = false
 
     constructor(options) {
         this.renderer = new WebGLRenderer({
@@ -82,6 +82,9 @@ class MinecraftSkinViewer {
         // Premium Features
         this.setDinnerbone(options.dinnerbone)
         this.setGlint(options.glint)
+
+        // Animated
+        this.animatePlayer = options.animate
 
         // Controls
         this.controls = new OrbitControls(this.camera, this.renderer.domElement)
@@ -141,13 +144,27 @@ class MinecraftSkinViewer {
 
         requestAnimationFrame(this.animate)
 
-        const delta = this.timer.getDelta()
+        const elapsedTime = this.timer.getElapsed()
+        const deltaTime = this.timer.getDelta()
 
         this.controls.update()
         this.composer.render()
 
-        this.playerObject.cape.animate(delta)
+        this.playerObject.cape.animate(deltaTime)
         this.playerObject.elytra.animate()
+
+        if (this.animatePlayer) {
+            const swing = Math.sin(elapsedTime * 5)
+            const armAngle = MathUtils.degToRad(14) * swing
+            const legAngle = MathUtils.degToRad(18) * swing
+
+            this.playerObject.cape.mesh.rotation.x =
+                0.2 + MathUtils.degToRad(9) * Math.sin(elapsedTime * 2)
+            this.playerObject.skin.mesh.children[2].rotation.x = -armAngle
+            this.playerObject.skin.mesh.children[3].rotation.x = armAngle
+            this.playerObject.skin.mesh.children[4].rotation.x = legAngle
+            this.playerObject.skin.mesh.children[5].rotation.x = -legAngle
+        }
 
         if (this.resizeRendererToDisplaySize()) {
             this.camera.aspect =
@@ -167,7 +184,6 @@ class MinecraftSkinViewer {
         this.fxaaPass.dispose()
 
         this.playerObject.skin.material.dispose()
-        this.playerObject.overlay.material.dispose()
         this.playerObject.ears.material.dispose()
         this.playerObject.cape.material.dispose()
         this.playerObject.elytra.material.dispose()
@@ -189,6 +205,9 @@ class MinecraftSkinViewer {
             this.playerObject.cape.mesh.visible = !value
             this.playerObject.elytra.mesh.visible = value
         }
+    }
+    setAnimated(value) {
+        this.animatePlayer = value
     }
     loadSkin(src, model, dontFailOver = false) {
         if (src == null) {

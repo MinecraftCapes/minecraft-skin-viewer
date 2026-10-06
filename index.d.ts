@@ -1,6 +1,7 @@
 export default class MinecraftSkinViewer {
   constructor(options: {
     canvas: HTMLCanvasElement
+    animate?: boolean
     isometric?: boolean
     skin?: string
     model?: string | "classic" | "slim" | null
@@ -50,6 +51,10 @@ export default class MinecraftSkinViewer {
   setGlint(glint: boolean): void;
   /**
    * Dispose of the viewer and free up resources
+   */
+  setAnimated(value: boolean): void;
+  /**
+   * Should the player be animated
    */
   dispose(): void;
 }

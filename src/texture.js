@@ -77,7 +77,6 @@ export function applySkin(playerObject, image, model) {
 
     const texture = new CanvasTexture(ctx.canvas)
     playerObject.skin.updateTexture(texture)
-    playerObject.overlay.updateTexture(texture)
 }
 
 export function applyEars(playerObject, texture) {

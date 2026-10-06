@@ -27,11 +27,23 @@
                         class="form-check-input"
                         type="checkbox"
                         value=""
-                        id="checkDinnerbone"
+                        id="checkAutoRotate"
                         @change="setAutoRotate"
                     />
-                    <label class="form-check-label" for="checkDinnerbone"
+                    <label class="form-check-label" for="checkAutoRotate"
                         >Auto Rotate</label
+                    >
+                </div>
+                <div class="form-check form-switch">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="checkAnimated"
+                        @change="setAnimated"
+                    />
+                    <label class="form-check-label" for="checkAnimated"
+                        >Animated</label
                     >
                 </div>
             </div>
@@ -330,6 +342,11 @@ export default {
             this.minecraftSkinViewer.controls.autoRotate =
                 !this.minecraftSkinViewer.controls.autoRotate
             this.minecraftSkinViewer.controls.autoRotateSpeed = 10
+        },
+        setAnimated() {
+            this.minecraftSkinViewer.setAnimated(
+                !this.minecraftSkinViewer.animatePlayer
+            )
         },
         setElytra(value) {
             this.minecraftSkinViewer.setElytra(value.target.checked)
