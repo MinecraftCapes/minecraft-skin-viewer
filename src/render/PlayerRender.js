@@ -56,9 +56,6 @@ export default class PlayerRender extends Render {
                 position[2]
             )
 
-            console.log(0, -size[1] / 2, 0)
-            console.log(position[0], position[1] + size[1] / 2, position[2])
-
             return mesh
         }
 
