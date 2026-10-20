@@ -13,10 +13,10 @@ import type {
   Timer,
   WebGLRenderer,
 } from "three";
-import type { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import type { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
-import type { RenderPass } from "three/addons/postprocessing/RenderPass.js";
-import type { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
+import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import type { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import type { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import type { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
 
 /**
  * Options used to create a Minecraft skin viewer
