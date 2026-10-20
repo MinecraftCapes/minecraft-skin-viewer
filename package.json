@@ -49,6 +49,7 @@
     "vue": "^3.5.43"
   },
   "dependencies": {
+    "@types/three": "^0.186.0",
     "three": "^0.186.1"
   },
   "allowScripts": {
